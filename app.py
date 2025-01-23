@@ -167,9 +167,9 @@ if st.button("Predict Soil Fertility"):
     fertility_status, infertile_details = predict_soil_fertility(features)
 
     if fertility_status == "Fertile":
-        st.write("The soil is fertile!")
+        st.success(f"The soil is predicted to be: **{fertility_status}**")
     else:
-        st.write("The soil is infertile.")
+        st.error(f"The soil is predicted to be: **{fertility_status}**")
         st.write("Issues with the following parameters:")
         for feature, details in infertile_details.items():
             st.write(f"**{feature}**: {details['issue']}")
