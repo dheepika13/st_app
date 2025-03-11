@@ -79,5 +79,5 @@ if st.button("Predict Soil Fertility"):
             report_content += f"- {tip}\n"
     
     # Generate a downloadable report
-    st.download_button("📥 Download Soil Report", report_content, "soil_fertility_report.txt", "text/plain")
+    st.download_button("Download Soil Report", report_content, "soil_fertility_report.txt", "text/plain")
 
