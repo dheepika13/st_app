@@ -77,7 +77,9 @@ if st.button("Predict Soil Fertility"):
         for tip in maintenance_recommendations:
             st.write(f"✔️ {tip}")
             report_content += f"- {tip}\n"
-        st.link_button("Crop Recommendation", "https://5cr5vpjlbaumuzpq7unbic.streamlit.app/")
 
     # Generate a downloadable report
     st.download_button("📥 Download Soil Report", report_content, "soil_fertility_report.txt", "text/plain")
+
+if fertility_status != "Infertile":
+    st.link_button("Crop Recommendation", "https://5cr5vpjlbaumuzpq7unbic.streamlit.app/")
