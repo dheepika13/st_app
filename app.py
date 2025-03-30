@@ -30,7 +30,6 @@ optimal_ranges = {
 
 # Streamlit App
 st.title("Soil Fertility Prediction")
-st.markdown("Enter soil nutrient levels to find the best crop to cultivate after rice")
 
 # Input fields for soil properties
 features = {}
@@ -67,19 +66,18 @@ if st.button("Predict Soil Fertility"):
     report_content = f"📄 **Soil Fertility Analysis Report**\n\nSoil Status: {fertility_status}\n\n"
     
     if fertility_status == "Infertile":
-        st.error("Soil is Infertile! Below are recommendations to improve fertility:")
+        st.error("🚨 Soil is Infertile! Below are recommendations to improve fertility:")
         report_content += "**Nutrient Deficiencies & Recommendations:**\n"
         for param in deficient_nutrients:
             issue = "🔴 Too Low" if features[param] < optimal_ranges[param][0] else "🔴 Too High"
             report_content += f"- {param}: {features[param]} ({issue}). Adjust accordingly.\n"
     else:
-        st.success("Soil is Fertile! Follow these best practices to maintain fertility:")
+        st.success("✅ Soil is Fertile! Follow these best practices to maintain fertility:")
         report_content += "**Best Practices for Alluvial Soil Maintenance:**\n"
         for tip in maintenance_recommendations:
             st.write(f"✔️ {tip}")
             report_content += f"- {tip}\n"
         st.link_button("Crop Recommendation", "https://5cr5vpjlbaumuzpq7unbic.streamlit.app/")
-    
-    # Generate a downloadable report
-    st.download_button("Download Soil Report", report_content, "soil_fertility_report.txt", "text/plain")
 
+    # Generate a downloadable report
+    st.download_button("📥 Download Soil Report", report_content, "soil_fertility_report.txt", "text/plain")
