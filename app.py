@@ -30,6 +30,7 @@ optimal_ranges = {
 
 # Streamlit App
 st.title("Soil Fertility Prediction")
+st.markdown("Enter soil nutrient levels to find the best crop to cultivate after rice")
 
 # Input fields for soil properties
 features = {}
@@ -77,6 +78,7 @@ if st.button("Predict Soil Fertility"):
         for tip in maintenance_recommendations:
             st.write(f"✔️ {tip}")
             report_content += f"- {tip}\n"
+        st.link_button("Crop Recommendation", "https://5cr5vpjlbaumuzpq7unbic.streamlit.app/")
     
     # Generate a downloadable report
     st.download_button("Download Soil Report", report_content, "soil_fertility_report.txt", "text/plain")
