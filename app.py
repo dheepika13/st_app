@@ -59,10 +59,9 @@ if st.button("Predict Soil Fertility"):
         if value < min_val or value > max_val:
             deficient_nutrients.append(param)
     
-    fertility_status = "Infertile" if deficient_nutrients else "Fertile"
+fertility_status = "Infertile" if deficient_nutrients else "Fertile"
 st.success(f"The soil is predicted to be: **{fertility_status}**")
 
-# Generate Report Content
 report_content = f"Soil Fertility Analysis Report\n\nSoil Status: {fertility_status}\n\n"
 
 if fertility_status == "Infertile":
@@ -78,8 +77,8 @@ else:
         st.write(f" {tip}")
         report_content += f"- {tip}\n"
 
-# Generate a downloadable report
 st.download_button("Download Soil Report", report_content, "soil_fertility_report.txt", "text/plain")
+
 
 if fertility_status != "Infertile":
     st.link_button("Crop Recommendation", "https://5cr5vpjlbaumuzpq7unbic.streamlit.app/")
