@@ -52,7 +52,6 @@ maintenance_recommendations = [
 
 # Initialize variables
 fertility_status = None
-deficient_nutrients = []
 
 # Predict Soil Fertility
 if st.button("Predict Soil Fertility"):
