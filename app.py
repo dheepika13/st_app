@@ -31,6 +31,9 @@ optimal_ranges = {
 # Streamlit App
 st.title("Soil Fertility Prediction")
 
+#Fertility status
+fertility_status=None
+
 # Input fields for soil properties
 features = {}
 for nutrient, (min_val, max_val) in optimal_ranges.items():
@@ -60,7 +63,7 @@ if st.button("Predict Soil Fertility"):
             deficient_nutrients.append(param)
     
 fertility_status = "Infertile" if deficient_nutrients else "Fertile"
-st.success(f"The soil is predicted to be: **{fertility_status}**")
+st.write(f"The soil is predicted to be: **{fertility_status}**")
 
 report_content = f"Soil Fertility Analysis Report\n\nSoil Status: {fertility_status}\n\n"
 
