@@ -50,7 +50,8 @@ maintenance_recommendations = [
     "Encourage microbial activity with organic matter and biofertilizers."
 ]
 
-# Initialize variables
+# Initialize before prediction
+deficient_nutrients = []
 fertility_status = None
 
 # Predict Soil Fertility
