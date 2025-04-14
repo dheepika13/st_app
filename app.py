@@ -31,8 +31,9 @@ optimal_ranges = {
 # Streamlit App
 st.title("Soil Fertility Prediction")
 
-#Fertility status
-fertility_status=None
+# Initialize variables
+fertility_status = None
+deficient_nutrients = []
 
 # Input fields for soil properties
 features = {}
