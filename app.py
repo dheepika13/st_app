@@ -31,10 +31,6 @@ optimal_ranges = {
 # Streamlit App
 st.title("Soil Fertility Prediction")
 
-# Initialize variables
-fertility_status = None
-deficient_nutrients = []
-
 # Input fields for soil properties
 features = {}
 for nutrient, (min_val, max_val) in optimal_ranges.items():
@@ -53,6 +49,10 @@ maintenance_recommendations = [
     "Regularly test soil nutrients and adjust fertilization accordingly.",
     "Encourage microbial activity with organic matter and biofertilizers."
 ]
+
+# Initialize variables
+fertility_status = None
+deficient_nutrients = []
 
 # Predict Soil Fertility
 if st.button("Predict Soil Fertility"):
