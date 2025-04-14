@@ -50,39 +50,33 @@ maintenance_recommendations = [
     "Encourage microbial activity with organic matter and biofertilizers."
 ]
 
-# Initialize before prediction
-deficient_nutrients = []
-fertility_status = None
-
 # Predict Soil Fertility
 if st.button("Predict Soil Fertility"):
-    # Check if any nutrient is outside the optimal range
     deficient_nutrients = []
     for param, value in features.items():
         min_val, max_val = optimal_ranges[param]
         if value < min_val or value > max_val:
             deficient_nutrients.append(param)
-    
-fertility_status = "Infertile" if deficient_nutrients else "Fertile"
-st.write(f"The soil is predicted to be: **{fertility_status}**")
 
-report_content = f"Soil Fertility Analysis Report\n\nSoil Status: {fertility_status}\n\n"
+    fertility_status = "Infertile" if deficient_nutrients else "Fertile"
+    st.write(f"The soil is predicted to be: **{fertility_status}**")
 
-if fertility_status == "Infertile":
-    st.error("Soil is Infertile! Below are recommendations to improve fertility:")
-    report_content += "Nutrient Deficiencies & Recommendations:\n"
-    for param in deficient_nutrients:
-        issue = "Too Low" if features[param] < optimal_ranges[param][0] else "Too High"
-        report_content += f"- {param}: {features[param]} ({issue}). Adjust accordingly.\n"
-else:
-    st.success("Soil is Fertile! Follow these best practices to maintain fertility:")
-    report_content += "Best Practices for Alluvial Soil Maintenance:\n"
-    for tip in maintenance_recommendations:
-        st.write(f" {tip}")
-        report_content += f"- {tip}\n"
+    report_content = f"Soil Fertility Analysis Report\n\nSoil Status: {fertility_status}\n\n"
 
-st.download_button("Download Soil Report", report_content, "soil_fertility_report.txt", "text/plain")
+    if fertility_status == "Infertile":
+        st.error("Soil is Infertile! Below are recommendations to improve fertility:")
+        report_content += "Nutrient Deficiencies & Recommendations:\n"
+        for param in deficient_nutrients:
+            issue = "Too Low" if features[param] < optimal_ranges[param][0] else "Too High"
+            report_content += f"- {param}: {features[param]} ({issue}). Adjust accordingly.\n"
+    else:
+        st.success("Soil is Fertile! Follow these best practices to maintain fertility:")
+        report_content += "Best Practices for Alluvial Soil Maintenance:\n"
+        for tip in maintenance_recommendations:
+            st.write(f" {tip}")
+            report_content += f"- {tip}\n"
 
+        # Show crop recommendation link only for fertile soil
+        st.link_button("Crop Recommendation", "https://5cr5vpjlbaumuzpq7unbic.streamlit.app/")
 
-if fertility_status != "Infertile":
-    st.link_button("Crop Recommendation", "https://5cr5vpjlbaumuzpq7unbic.streamlit.app/")
+    st.download_button("Download Soil Report", report_content, "soil_fertility_report.txt", "text/plain")
